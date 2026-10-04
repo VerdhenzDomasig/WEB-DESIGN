@@ -1,0 +1,1081 @@
+/* Dark background, pink buttons, blue accents at chrome frame. */
+/* Mas maliit na outer margins; full-width screen layout. */
+/* Shared colors ng theme. Dito inaayos ang design ng website. */
+/* Shared variables: kulay, chrome gradient at glossy backgrounds. */
+:root {
+  --ink: #f6efff;
+  --muted: #b5bfd5;
+  --pink: #ff64bc;
+  --light-pink: #231525;
+  --lavender: #8bcfff;
+  --line: #7696ba;
+  --chrome: linear-gradient(135deg, #e7f4ff 0%, #879cad 25%, #313a50 48%, #d4e4f4 65%, #687b96 100%);
+  --gloss: linear-gradient(180deg, #243c55 0%, #15273e 45%, #101825 100%);
+}
+
+/* Pantayin ang sizing ng lahat ng elements. */
+* {
+  box-sizing: border-box;
+}
+
+/* Base font, kulay at background ng buong page. */
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--ink);
+  font-family: "Trebuchet MS", "Segoe UI", Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  background: radial-gradient(ellipse at 15% 0%, #291425, transparent 60%), linear-gradient(120deg, #090b12, #101827);
+  position: relative;
+  isolation: isolate;
+}
+
+/* Default na itsura ng links. */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Mahinang video overlay sa likod ng UI. */
+/* Video background; nasa likod lang at hindi humaharang sa clicks. */
+.video-background {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.08;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Silver frame at decorative title bar. */
+/* Chrome frame at laki ng buong UI. */
+.site-window {
+  position: relative;
+  z-index: 1;
+  width: calc(100% - 20px);
+  min-height: calc(100svh - 20px);
+  margin: 10px auto;
+  display: flex;
+  flex-direction: column;
+  padding: 7px;
+  border: 1px solid var(--ink);
+  border-radius: 19px;
+  background: var(--chrome);
+  box-shadow: 0 2px 0 #fff inset, 0 0 0 2px #e7e4f0, 0 12px 35px #5940661a;
+}
+
+/* Itsura ng title bar sa taas. */
+.window-titlebar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 9px 18px;
+  border: 1px solid var(--line);
+  border-radius: 11px 11px 5px 5px;
+  background: linear-gradient(110deg, #253b59, #172234 55%, #59324d);
+  box-shadow: 0 2px 0 #ffffffaa inset;
+  font-family: "Courier New", monospace;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+/* Ayos ng decorative window buttons. */
+.window-controls {
+  display: flex;
+  gap: 6px;
+}
+
+/* Laki at itsura ng minimize, maximize at close icons. */
+.window-controls span {
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border: 1px solid var(--ink);
+  border-radius: 4px;
+  background: var(--chrome);
+  font: 22px/1 Arial, sans-serif;
+  box-shadow: 1px 1px 0 #fff inset;
+  user-select: none;
+}
+
+/* Background at borders ng mga main section. */
+header,
+main,
+footer {
+  background-color: #10121d;
+  border-left: 1px solid var(--line);
+  border-right: 1px solid var(--line);
+}
+
+/* Spacing ng brand at navigation. */
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin-top: 6px;
+  padding: 14px 28px;
+  border-top: 1px solid var(--line);
+  border-radius: 9px 9px 0 0;
+}
+
+/* Font at laki ng website name. */
+.brand {
+  font-size: 25px;
+  font-weight: 800;
+  letter-spacing: 0.6px;
+  white-space: nowrap;
+}
+
+/* Star accent sa tabi ng website name. */
+.brand span {
+  color: #ff74c4;
+  font-size: 33px;
+  vertical-align: middle;
+  margin-left: 6px;
+}
+
+/* Ayos at pagitan ng navigation links. */
+nav {
+  display: flex;
+  gap: 9px;
+  flex-wrap: wrap;
+}
+
+/* Glossy buttons at navigation na may konting hover effect. */
+/* Base style ng links at buttons. */
+nav a,
+.button,
+button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 11px 23px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: linear-gradient(180deg, #2c3b51, #192536 60%, #101927);
+  box-shadow: 0 0 0 2px #b7dfff20 inset, 0 2px 2px #5e3c641a;
+  color: var(--ink);
+  font: 700 16px/1.3 "Trebuchet MS", "Segoe UI", Arial, sans-serif;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+nav a.active,
+.button:not(.outline),
+/* Pink style ng main buttons. */
+button:not(.outline) {
+  background: linear-gradient(180deg, #ffb7df 0%, #f47fbd 48%, #e951a2 85%, #ff93cc 100%);
+}
+
+nav a:hover,
+.button:hover,
+/* Konting angat kapag naka-hover ang mouse. */
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 0 2px #b7dfff20 inset, 0 5px 10px #74436d25;
+}
+
+nav a:active,
+.button:active,
+/* Pressed effect kapag nag-click. */
+button:active {
+  transform: translateY(1px);
+}
+
+/* Highlight ng kasalukuyang page sa navigation. */
+nav a.active {
+  font-weight: 800;
+}
+
+/* Laki, padding at bilog na corners ng buttons. */
+.button,
+button {
+  padding: 14px 25px;
+  border-radius: 28px;
+}
+
+/* Background ng outline buttons. */
+.outline {
+  background: var(--gloss);
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+/* Focus outline kapag keyboard ang gamit. */
+textarea:focus-visible {
+  outline: 3px solid #8bd5ff;
+  outline-offset: 4px;
+}
+
+/* Gamitin ang available space sa loob ng UI. */
+/* Spacing at available space ng page content. */
+main {
+  flex: 1;
+  padding: 16px 28px 22px;
+}
+
+/* Serif headings at madaling basahing body font. */
+/* Font at laki ng main heading. */
+h1 {
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 600;
+  font-size: clamp(42px, 5.4vw, 72px);
+  line-height: 1.08;
+  letter-spacing: -1.8px;
+  margin: 15px 0 24px;
+  color: var(--ink);
+}
+
+/* Kulay ng highlighted part ng heading. */
+h1 span {
+  color: var(--ink);
+}
+
+/* Font at spacing ng subheadings. */
+h2 {
+  font-size: 23px;
+  line-height: 1.3;
+  margin: 10px 0 14px;
+}
+
+/* Spacing at line height ng paragraphs. */
+p {
+  margin: 14px 0;
+  line-height: 1.75;
+}
+
+/* Maliit na intro label sa taas ng heading. */
+.eyebrow {
+  color: #95d7ff;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+/* Layout ng welcome text at graphic sa Home. */
+.hero {
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  align-items: center;
+  gap: 15px;
+  min-height: 0;
+  height: 100%;
+}
+
+/* Laki at lapad ng welcome description. */
+.intro {
+  max-width: 480px;
+  font-size: 18px;
+}
+
+/* Ayos at pagitan ng buttons. */
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 25px;
+}
+
+/* Pwesto ng Home graphic. */
+.hero-art {
+  position: relative;
+  min-width: 0;
+}
+
+/* Laki at fit ng Home image. */
+.hero-art img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 450px;
+  object-fit: contain;
+}
+
+/* Decorative hearts sa paligid ng graphic. */
+.pixel-heart {
+  position: absolute;
+  color: #ff6fbf;
+  font: 44px/1 "Courier New", monospace;
+  pointer-events: none;
+}
+
+/* Pwesto ng unang heart. */
+.heart-one {
+  top: 4%;
+  left: 0;
+  transform: rotate(-10deg);
+}
+
+/* Pwesto ng pangalawang heart. */
+.heart-two {
+  bottom: 8%;
+  right: 0;
+  font-size: 30px;
+}
+
+/* Heading size para sa ibang pages. */
+.page-title {
+  font-size: clamp(34px, 4vw, 48px);
+  letter-spacing: -1px;
+}
+
+/* Shared style ng Works cards, Profile at tool panels. */
+/* Background, border at padding ng boxes. */
+.card {
+  min-width: 0;
+  border: 1px solid #6582a4;
+  border-radius: 16px;
+  padding: 20px;
+  background: linear-gradient(135deg, #1b2030, #191722);
+  box-shadow: 0 0 0 3px #b7dfff0d inset, 3px 4px 0 #070a13;
+}
+
+/* Columns at gaps ng Works cards. */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+/* Konting angat lang ng option boxes kapag hover. */
+/* Smooth transition ng option boxes. */
+.grid > .card {
+  transition: transform 0.2s ease;
+}
+
+/* Screen adjustments: @media (hover: hover). */
+@media (hover: hover) {
+  /* Konting angat ng option box kapag hover. */
+  .grid > .card:hover {
+    transform: translateY(-4px);
+  }
+}
+
+/* Laki at kulay ng tool icons. */
+.symbol {
+  color: #89d5ff;
+  font-size: 30px;
+}
+
+/* Layout ng personal at contact details. */
+.profile {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 30px;
+  align-items: start;
+}
+
+/* Frame ng photo kung ginagamit. */
+.photo {
+  width: 100%;
+  aspect-ratio: 1;
+  padding: 5px;
+  border: 1px solid var(--line);
+  border-radius: 13px;
+  background: var(--chrome);
+  overflow: hidden;
+}
+
+/* Inner container ng photo. */
+.photo > div {
+  width: 100%;
+  height: 100%;
+}
+
+/* Fit ng photo sa frame. */
+.photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+/* Ayos ng information labels at values. */
+.details {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+  margin: 25px 0;
+}
+
+/* Style ng label ng bawat detail. */
+.details dt {
+  color: var(--muted);
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+/* Style ng actual information; puwedeng mag-wrap ang mahahabang text. */
+.details dd {
+  margin: 0;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+/* Lapad at pwesto ng calculator/tool panel. */
+.tool {
+  max-width: 780px;
+  margin: 0 auto;
+}
+
+/* Style ng Back to Works link. */
+.back {
+  display: inline-block;
+  margin-bottom: 18px;
+  color: #9cdcff;
+  font-size: 15px;
+}
+
+/* Spacing ng labels sa inputs. */
+.tool label {
+  display: block;
+  margin: 18px 0 8px;
+  font-weight: 700;
+}
+
+/* Base style ng input fields. */
+input,
+textarea {
+  width: 100%;
+  padding: 13px 15px;
+  border: 1px solid #6a86a6;
+  border-radius: 10px;
+  background: #0c101c;
+  box-shadow: 1px 2px 3px #80518915 inset;
+  color: var(--ink);
+  font: inherit;
+}
+
+/* Taas at resize behavior ng text input. */
+textarea {
+  min-height: 135px;
+  resize: vertical;
+}
+
+/* Box kung saan lumalabas ang sagot. */
+.result {
+  margin-top: 24px;
+  padding: 20px;
+  border: 1px solid #637c9e;
+  border-radius: 12px;
+  background: #121b2b;
+  overflow-wrap: anywhere;
+}
+
+/* Mas malaking text para sa output. */
+.result strong {
+  display: block;
+  margin-top: 8px;
+  font-size: 23px;
+  white-space: pre-wrap;
+}
+
+/* Kulay ng error messages. */
+.error {
+  color: #ff9abd;
+}
+
+/* Ayos ng linked list nodes sa screen. */
+.nodes {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+/* Style ng bawat node box. */
+.node {
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  padding: 10px 17px;
+  border: 1px solid #729dcc;
+  border-radius: 9px;
+  background: var(--gloss);
+}
+
+/* Style ng extra hints at small text. */
+.muted {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+/* Signature sa ilalim ng page. */
+footer {
+  padding: 10px 20px 12px;
+  border-bottom: 1px solid var(--line);
+  border-radius: 0 0 10px 10px;
+  text-align: center;
+  color: #a5b8d4;
+  font-size: 14px;
+  letter-spacing: 2px;
+}
+
+/* Paglabas ng content na may fade at konting slide. */
+/* Animation: mga yugto ng paglabas ng content. */
+@keyframes pageEnter {
+  /* Simula ng animation: faded at bahagyang nasa baba. */
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  /* Dulo ng animation: visible na at nasa tamang pwesto. */
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Entrance animation ng content. */
+main > * {
+  animation: pageEnter 0.45s ease-out both;
+}
+
+/* Layout adjustments para kasya sa smaller screens. */
+/* Screen adjustments: @media (max-width: 850px). */
+@media (max-width: 850px) {
+  /* Spacing ng brand at navigation. */
+  header {
+    padding: 20px 24px;
+    gap: 15px;
+    flex-wrap: wrap;
+  }
+  /* Laki ng navigation buttons. */
+  nav a {
+    padding: 10px 17px;
+  }
+  /* Spacing at available space ng page content. */
+  main {
+    padding: 20px 24px 25px;
+  }
+  /* Layout ng personal at contact details. */
+  .profile {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 22px;
+  }
+}
+
+/* Screen adjustments: @media (max-width: 620px). */
+@media (max-width: 620px) {
+  /* Chrome frame at laki ng buong UI. */
+  .site-window {
+    width: calc(100% - 12px);
+    min-height: calc(100svh - 12px);
+    margin: 6px auto;
+    padding: 5px;
+  }
+  /* Itsura ng title bar sa taas. */
+  .window-titlebar {
+    padding: 8px 10px;
+    font-size: 15px;
+    letter-spacing: 0;
+  }
+  /* Ayos ng decorative window buttons. */
+  .window-controls {
+    gap: 4px;
+  }
+  /* Laki at itsura ng minimize, maximize at close icons. */
+  .window-controls span {
+    width: 22px;
+    height: 22px;
+    font-size: 18px;
+  }
+  /* Spacing ng brand at navigation. */
+  header {
+    padding: 18px 16px;
+    gap: 15px;
+  }
+  /* Font at laki ng website name. */
+  .brand {
+    font-size: 22px;
+  }
+  /* Ayos at pagitan ng navigation links. */
+  nav {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    width: 100%;
+    gap: 5px;
+  }
+  /* Laki ng navigation buttons. */
+  nav a {
+    min-width: 0;
+    padding: 10px 4px;
+    font-size: 14px;
+    border-radius: 10px;
+  }
+  /* Spacing at available space ng page content. */
+  main {
+    padding: 15px 16px 22px;
+  }
+  /* Single-column layout kapag maliit ang screen. */
+  .hero,
+  .grid,
+  .profile,
+  .details {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  /* Layout ng welcome text at graphic sa Home. */
+  .hero {
+    min-height: 0;
+    gap: 24px;
+  }
+  /* Font at laki ng main heading. */
+  h1 {
+    font-size: clamp(36px, 10vw, 54px);
+    letter-spacing: -1px;
+  }
+  /* Laki at lapad ng welcome description. */
+  .intro {
+    font-size: 16px;
+  }
+  /* Pwesto ng Home graphic. */
+  .hero-art {
+    max-width: 420px;
+    margin: 0 auto;
+  }
+  /* Background, border at padding ng boxes. */
+  .card {
+    padding: 20px;
+  }
+  /* Frame ng photo kung ginagamit. */
+  .photo {
+    max-width: 245px;
+    margin: 0 auto;
+  }
+  /* Laki, padding at bilog na corners ng buttons. */
+  .button,
+  button {
+    padding: 12px 18px;
+    font-size: 15px;
+  }
+}
+
+/* Screen adjustments: @media (prefers-reduced-motion: reduce). */
+@media (prefers-reduced-motion: reduce) {
+  /* Video background; nasa likod lang at hindi humaharang sa clicks. */
+  .video-background {
+    display: none;
+  }
+  /* Entrance animation ng content. */
+  main > * {
+    animation: none;
+  }
+  /* Transitions ng buttons at cards. */
+  nav a,
+  .button,
+  button,
+  .grid > .card {
+    transition: none;
+  }
+  nav a:hover,
+  nav a:active,
+  .button:hover,
+  .button:active,
+  button:hover,
+  button:active,
+  /* Konting angat ng option box kapag hover. */
+  .grid > .card:hover {
+    transform: none;
+  }
+}
+
+/* Gamitin ang available height sa Home. Compact ang Works cards; scroll kung kailangan sa maliit na screen. */
+/* I-center ang Home content sa available height. */
+main:has(> .hero) {
+  display: flex;
+  align-items: center;
+}
+
+/* Gamitin ang buong lapad para sa hero section. */
+main > .hero {
+  width: 100%;
+}
+
+/* Button spacing sa Works cards. */
+.grid .actions {
+  margin-top: 18px;
+}
+
+/* Description spacing sa Works cards. */
+.grid > .card > p {
+  margin: 10px 0 16px;
+}
+
+/* Screen adjustments: @media (min-width: 1000px). */
+@media (min-width: 1000px) {
+  /* Smooth transition ng option boxes. */
+  .grid > .card {
+    padding: 18px 24px;
+  }
+
+  /* Heading spacing sa Works cards. */
+  .grid > .card h2 {
+    margin: 5px 0 8px;
+  }
+
+  /* Icon size sa Works cards. */
+  .grid > .card .symbol {
+    font-size: 26px;
+  }
+}
+
+/* Readable text sa pink buttons, blue outlines at serif headings. */
+nav a.active,
+.button:not(.outline),
+/* Pink style ng main buttons. */
+button:not(.outline) {
+  color: #281020;
+  border-color: #ffaad7;
+}
+/* Blue outline style ng secondary buttons. */
+.button.outline,
+button.outline {
+  color: #b7e6ff;
+  border-color: #88caff;
+}
+/* Kulay ng highlighted part ng heading. */
+h1 span {
+  color: #ff81c8;
+}
+/* Laki at fit ng Home image. */
+.hero-art img {
+  filter: saturate(0.85) contrast(1.12);
+}
+/* Laki at itsura ng minimize, maximize at close icons. */
+.window-controls span {
+  color: #101724;
+  border-color: #26374c;
+}
+/* Details na lang sa Profile at Contact; wala nang photo column. */
+/* Layout ng personal at contact details. */
+.profile {
+  padding: clamp(20px, 3vw, 36px);
+}
+/* Spacing at divider ng bawat detail. */
+.details > div {
+  padding-bottom: 12px;
+  border-bottom: 1px solid #7696ba40;
+}
+
+
+/* Video nasa loob ng UI frame, sa likod ng content. */
+.site-window {
+  isolation: isolate;
+  overflow: hidden;
+}
+
+/* Video playback: muted, autoplay at loop. Hindi humaharang sa clicks. */
+.site-window > .video-background {
+  position: absolute;
+  inset: 7px;
+  width: calc(100% - 14px);
+  height: calc(100% - 14px);
+  object-fit: cover;
+  opacity: 0.32;
+  z-index: 0;
+  pointer-events: none;
+  border-radius: 12px;
+}
+
+/* Dark base sa likod ng video; hindi na ginagamit ang static GIF. */
+.site-window::before {
+  content: "";
+  position: absolute;
+  inset: 7px;
+  background: #10121d;
+  border-radius: 12px;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Text at controls nasa ibabaw ng video layer. */
+.site-window > .window-titlebar,
+.site-window > header,
+.site-window > main,
+.site-window > footer {
+  position: relative;
+  z-index: 1;
+}
+
+/* Makikita ang video sa page surface; solid pa rin ang cards. */
+header,
+main,
+footer {
+  background-color: transparent;
+}
+
+/* Itugma ang video sa mas maliit na mobile border. */
+@media (max-width: 620px) {
+  .site-window > .video-background {
+    inset: 5px;
+    width: calc(100% - 10px);
+    height: calc(100% - 10px);
+  }
+  .site-window::before {
+    inset: 5px;
+  }
+}
+
+/* Semi-transparent boxes para makita ang video. Background lang ang may alpha; buo ang opacity ng text at buttons. */
+.card {
+  background: linear-gradient(
+    135deg,
+    rgba(27, 32, 48, 0.42),
+    rgba(25, 23, 34, 0.42)
+  );
+  box-shadow: 0 0 0 3px rgba(183, 223, 255, 0.04) inset,
+    3px 4px 0 rgba(7, 10, 19, 0.28);
+}
+
+/* Result box transparent din; readable pa rin ang output. */
+.result {
+  background: rgba(18, 27, 43, 0.45);
+}
+
+
+/* Mas malaking readable fonts sa lahat ng pages. Responsive sa screen height; ginagamit ang bakanteng space ng main. */
+@media (min-width: 900px) {
+  body {
+    font-size: clamp(17px, 2.3svh, 22px);
+    line-height: 1.45;
+  }
+  .site-window {
+    width: calc(100% - 12px);
+    min-height: calc(100svh - 12px);
+    margin: 6px auto;
+  }
+  .window-titlebar {
+    padding: 6px 16px;
+    font-size: 17px;
+  }
+  header {
+    padding: 10px 24px;
+  }
+  .brand {
+    font-size: clamp(24px, 3svh, 30px);
+  }
+  nav a {
+    padding: 10px 22px;
+    font-size: clamp(16px, 2.1svh, 20px);
+  }
+  /* Flexible main at full-height panels; footer nasa ibaba. */
+  main {
+    display: flex;
+    flex-direction: column;
+    padding: 12px 24px 18px;
+  }
+  main:has(> .hero) {
+    align-items: stretch;
+    justify-content: center;
+  }
+  h1 {
+    font-size: clamp(46px, 7svh, 76px);
+    margin: 10px 0 20px;
+  }
+  .page-title {
+    font-size: clamp(36px, 5.6svh, 58px);
+    margin: 8px 0 18px;
+  }
+  h2 {
+    font-size: clamp(24px, 3.2svh, 32px);
+    margin: 4px 0 10px;
+  }
+  p {
+    margin: 10px 0;
+    line-height: 1.5;
+  }
+  .eyebrow,
+  .back,
+  .muted {
+    font-size: clamp(16px, 2svh, 20px);
+  }
+  .intro {
+    max-width: 650px;
+    font-size: clamp(20px, 2.7svh, 27px);
+  }
+  .card,
+  .profile,
+  .grid > .card {
+    padding: clamp(18px, 2.8svh, 30px);
+  }
+  /* Profile at Contact panel sumasakop sa available main space. */
+  main > .profile {
+    flex: 1;
+  }
+  .profile > div {
+    display: flex;
+    flex-direction: column;
+  }
+  .details {
+    flex: 1;
+    align-content: space-evenly;
+    margin: 16px 0;
+    gap: 16px 28px;
+  }
+  .details dt {
+    font-size: clamp(16px, 2.1svh, 20px);
+  }
+  .details dd {
+    font-size: clamp(19px, 2.6svh, 26px);
+  }
+  .details > div {
+    padding-bottom: 12px;
+  }
+  /* Works cards lumalawak at ginagamit ang natitirang height. */
+  main > .grid {
+    flex: 1;
+    gap: 18px;
+  }
+  .grid > .card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .grid > .card .symbol {
+    font-size: 34px;
+  }
+  .actions,
+  .grid .actions {
+    margin-top: 18px;
+    gap: 12px;
+  }
+  .button,
+  button {
+    padding: 12px 24px;
+    font-size: clamp(17px, 2.2svh, 21px);
+  }
+  /* Mas malapad ang tools; mas malaking input at result text. */
+  .tool {
+    width: min(100%, 1100px);
+    max-width: none;
+  }
+  .tool label {
+    margin: 10px 0 6px;
+  }
+  input,
+  textarea {
+    padding: 11px 14px;
+    font-size: inherit;
+  }
+  textarea {
+    min-height: 110px;
+  }
+  .result {
+    margin-top: 16px;
+    padding: 14px 18px;
+  }
+  .result strong {
+    font-size: clamp(24px, 3svh, 32px);
+  }
+  .hero-art img {
+    max-height: min(520px, 62svh);
+  }
+  footer {
+    padding: 7px 16px;
+    font-size: 15px;
+  }
+}
+
+/* Bawasan ang spacing sa shorter screens para kasya ang content. */
+@media (min-width: 900px) and (max-height: 700px) {
+  header {
+    padding: 8px 22px;
+  }
+  main {
+    padding: 8px 22px 12px;
+  }
+  .page-title {
+    margin: 5px 0 10px;
+  }
+  .card,
+  .profile,
+  .grid > .card {
+    padding: 14px 18px;
+  }
+  .details {
+    gap: 10px 20px;
+    margin: 10px 0;
+  }
+  .result {
+    margin-top: 10px;
+    padding: 10px 14px;
+  }
+  .actions,
+  .grid .actions {
+    margin-top: 12px;
+  }
+}
+
+/* Malaking hero headline na sumasakop sa left column. Home heading lang ito; hindi ang titles ng tools. */
+@media (min-width: 900px) {
+  .hero {
+    grid-template-columns: 1.1fr 1fr;
+    gap: 24px;
+  }
+  .hero > div:first-child {
+    min-width: 0;
+  }
+  .hero h1 {
+    font-size: clamp(64px, min(7.3vw, 14svh), 144px);
+    line-height: 1.02;
+    letter-spacing: -0.045em;
+    margin: 16px 0 26px;
+    width: 100%;
+  }
+  .hero .intro {
+    max-width: 100%;
+    font-size: clamp(20px, 2.7svh, 28px);
+  }
+}
+
+/* Malaki rin ang Home heading sa tablet at phone, naka-adjust sa width para walang horizontal overflow. */
+@media (max-width: 899px) {
+  .hero h1 {
+    font-size: clamp(44px, 8vw, 72px);
+    line-height: 1.04;
+    letter-spacing: -0.035em;
+  }
+}
+
+/* Palakihin ang portrait graphic ayon sa available screen height. Tinatanggal ang lumang 450/520px image limit. */
+@media (min-width: 900px) {
+  .hero-art {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 0;
+  }
+  .hero-art img {
+    width: 100%;
+    height: calc(100svh - 170px);
+    max-height: none;
+    object-fit: contain;
+    object-position: center;
+    /* Konting zoom para mabawasan ang bakanteng border ng image. */
+    transform: scale(1.12);
+  }
+}
+
+/* Malaking image sa mobile, kasya sa lapad at walang zoom overflow. */
+@media (max-width: 899px) {
+  .hero-art {
+    max-width: none;
+    width: 100%;
+  }
+  .hero-art img {
+    width: 100%;
+    max-height: 70svh;
+    height: auto;
+    transform: none;
+  }
+}
