@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!-- Page setup: title, mobile view, CSS at JavaScript files. -->
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Works | VERDHENZ </title>
+    <meta name="description" content="My programming portfolio and interactive tools.">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%23ed4aaa'/%3E%3Ctext x='6' y='24' font-size='25' fill='white'%3E♡%3C/text%3E%3C/svg%3E">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="{{ url_for('static', filename='app.js') }}" defer>
+    </script>
+  </head>
+  <body>
+<!-- Chrome frame at pink-blue title bar ng UI. -->
+    <!-- Chrome frame na bumabalot sa buong website UI. -->
+    <div class="site-window">
+      <!-- animated background behind all content. -->
+      <video class="video-background" autoplay muted loop playsinline aria-hidden="true" preload="auto">
+        <source src="{{ url_for('static', filename='assets/background.mp4') }}" type="video/mp4">
+      </video>
+      <!-- Y2K title bar; decorative lang ang window controls. -->
+      <div class="window-titlebar">
+        <span>verdhenz.online</span>
+        <span class="window-controls" aria-hidden="true">
+          <span>−</span><span>□</span><span>×</span>
+        </span>
+      </div>
+    <!-- Website brand at main navigation. -->
+    <header>
+      <!-- Website name na tugma sa theme. -->
+      <a class="brand" href="{{ url_for('index') }}">VERDHENZ <span aria-hidden="true">✧</span></a>
+      <!-- Mga link papuntang Home, Profile, Works at Contact. -->
+      <nav aria-label="Main navigation">
+        <a class="" href="{{ url_for('index') }}">Home</a>
+        <a class="" href="{{ url_for('profile') }}">Profile</a>
+        <a class="active" href="{{ url_for('works') }}">Works</a>
+        <a class="" href="{{ url_for('contact') }}">Contact</a>
+      </nav>
+    </header>
+    <!-- Main content ng page na ito. -->
+    <main>
+      <div class="eyebrow">Code & create ✦</div>
+      <!-- Main heading ng page. -->
+      <h1 class="page-title">My Programming Works</h1>
+      <div class="grid">
+        <!-- Section na ito: card. -->
+        <section class="card">
+          <div class="symbol">Aa</div>
+          <!-- Pamagat ng card o personal information. -->
+          <h2>To Uppercase</h2>
+          <!-- Description o message na binabasa ng visitor. -->
+          <p>Turn your text into uppercase letters.</p>
+          <a class="button" href="{{ url_for('uppercase') }}">Open To Uppercase</a>
+        </section>
+        <!-- Section na ito: card. -->
+        <section class="card">
+          <div class="symbol">△</div>
+          <!-- Pamagat ng card o personal information. -->
+          <h2>Area of Triangle</h2>
+          <!-- Description o message na binabasa ng visitor. -->
+          <p>Calculate using the base and height.</p>
+          <a class="button" href="{{ url_for('triangle') }}">Open Area of Triangle</a>
+        </section>
+        <!-- Section na ito: card. -->
+        <section class="card">
+          <div class="symbol">○</div>
+          <!-- Pamagat ng card o personal information. -->
+          <h2>Area of Circle</h2>
+          <!-- Description o message na binabasa ng visitor. -->
+          <p>Calculate using the radius.</p>
+          <a class="button" href="{{ url_for('circle') }}">Open Area of Circle</a>
+        </section>
+        <!-- Section na ito: card. -->
+        <section class="card">
+          <div class="symbol">⛓</div>
+          <!-- Pamagat ng card o personal information. -->
+          <h2>Linked List</h2>
+          <!-- Description o message na binabasa ng visitor. -->
+          <p>Insert, delete, and explore connected nodes.</p>
+          <a class="button" href="{{ url_for('linked_list') }}">Open Linked List</a>
+        </section>
+        <!-- Infix at postfix converter na kapareho ng Works cards. -->
+        <section class="card">
+          <div class="symbol">⇄</div>
+          <h2>INFIX &amp; POSTFIX</h2>
+          <p>Convert infix expressions to postfix, step by step.</p>
+          <a class="button" href="{{ url_for('infix_postfix') }}">Open Infix &amp; Postfix</a>
+        </section>
+      </div>
+    </main>
+    <!-- Footer signature sa ilalim ng page. -->
+    <footer>AVER♡</footer>
+    </div><!-- Dulo ng UI frame. -->
+  </body>
+</html>
