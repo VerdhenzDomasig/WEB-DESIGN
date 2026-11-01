@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!-- Page setup: title, mobile view, CSS at JavaScript files. -->
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>To Uppercase | VERDHENZ </title>
+    <meta name="description" content="My programming portfolio and interactive tools.">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%23ed4aaa'/%3E%3Ctext x='6' y='24' font-size='25' fill='white'%3E♡%3C/text%3E%3C/svg%3E">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="{{ url_for('static', filename='app.js') }}" defer>
+    </script>
+  </head>
+  <body class="reference-page">
+<!-- Chrome frame at pink-blue title bar ng UI. -->
+    <!-- Chrome frame na bumabalot sa buong website UI. -->
+    <div class="site-window">
+      <!-- animated background behind all content. -->
+      <video class="video-background" autoplay muted loop playsinline aria-hidden="true" preload="auto">
+        <source src="{{ url_for('static', filename='assets/background.mp4') }}" type="video/mp4">
+      </video>
+      <!-- Y2K title bar; decorative lang ang window controls. -->
+      <div class="window-titlebar">
+        <span>verdhenz.online</span>
+        <span class="window-controls" aria-hidden="true">
+          <span>−</span><span>□</span><span>×</span>
+        </span>
+      </div>
+    <!-- Website brand at main navigation. -->
+    <header>
+      <!-- Website name na tugma sa theme. -->
+      <a class="brand" href="{{ url_for('index') }}">VERDHENZ <span aria-hidden="true">✧</span></a>
+      <!-- Mga link papuntang Home, Profile, Works at Contact. -->
+      <nav aria-label="Main navigation">
+        <a class="" href="{{ url_for('index') }}">Home</a>
+        <a class="" href="{{ url_for('profile') }}">Profile</a>
+        <a class="active" href="{{ url_for('works') }}">Works</a>
+        <a class="" href="{{ url_for('contact') }}">Contact</a>
+      </nav>
+    </header>
+    <!-- Main content ng page na ito. -->
+    <main>
+      <section class="tool study-tool">
+        <a class="back" href="{{ url_for('works') }}">‹ Back to Works</a>
+        <div class="study-heading"><h1 class="page-title">To Uppercase</h1><div class="wb-tabs study-tabs" role="tablist" aria-label="Uppercase sections" data-page-tabs>
+  <button class="outline" type="button" id="uppercase-demo-tab" role="tab" aria-selected="true" aria-controls="uppercase-demo" data-panel="uppercase-demo">Try it out</button>
+  <button class="outline" type="button" id="uppercase-info-tab" role="tab" aria-selected="false" aria-controls="uppercase-info" tabindex="-1" data-panel="uppercase-info">Basic info &amp; references</button>
+</div></div>
+        <div id="uppercase-demo" role="tabpanel" aria-labelledby="uppercase-demo-tab">
+          <div class="card">          <div class="symbol">Aa</div>
+          <!-- Main heading ng page. -->
+          <!-- Input form; app.js ang humahawak sa submission. -->
+          <form id="uppercase" novalidate>
+            <!-- Pangalan ng field; for attribute ang koneksyon sa input. -->
+            <label for="text">Enter your text</label>
+            <!-- User input; id ang ginagamit ng app.js para basahin ang value. -->
+            <textarea id="text" required placeholder="Type something here…"></textarea>
+            <!-- Grupo ng buttons o navigation links. -->
+            <div class="actions">
+              <!-- Action button; type o data-action ang nagtatakda ng gagawin. -->
+              <button>Convert to Uppercase</button>
+            </div>
+          </form>
+          <div class="result" aria-live="polite" aria-atomic="true">
+            <span>Result</span>
+            <!-- Dito inilalagay ng app.js ang sagot o error message. -->
+            <strong id="output">Your result will appear here.</strong>
+          </div>
+
+          </div>
+        </div>
+        <div id="uppercase-info" role="tabpanel" aria-labelledby="uppercase-info-tab" hidden>
+          <!-- Basic information, examples at clickable references para sa topic na ito. -->
+<div class="card study-info">
+  <span class="wb-kicker">A QUICK GUIDE</span>
+  <h2>Basic information</h2>
+  <p class="study-intro">Uppercase conversion changes letters to their capital forms. This tool uses JavaScript’s <code>toUpperCase()</code> method. <a class="study-cite" href="#uppercase-ref-1">[1]</a></p>
+  <div class="study-grid"><article class="study-topic"><h3>How it works</h3><ol><li>Enter a word, sentence, or paragraph.</li><li>Click Convert to Uppercase.</li><li>Read the converted text in the result box.</li></ol><p>The method returns a new string; your input remains available for editing.</p></article><article class="study-topic"><h3>Example</h3><div class="study-example"><span>Input</span><code>Hello, student 01!</code><span>Output</span><code>HELLO, STUDENT 01!</code></div><p>Digits, spaces, and punctuation remain as entered.</p></article><article class="study-topic"><h3>Useful for</h3><p>Creating headings, labels, notices, and consistently capitalized text.</p><p>Uppercase conversion changes letter case. It does not translate or rewrite the text.</p></article><article class="study-topic"><h3>What this demo accepts</h3><p>Enter any non-blank text. Unicode casing can expand some letters, such as <code>ß → SS</code>. The method follows Unicode default case conversion. <a class="study-cite" href="#uppercase-ref-2">[2]</a></p></article></div>
+  <h2 class="study-reference-heading">References</h2>
+  <ol class="study-references"><li id="uppercase-ref-1"><span>MDN Web Docs</span><a class="wb-source" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/toUpperCase" target="_blank" rel="noopener noreferrer">String.prototype.toUpperCase() ↗</a></li><li id="uppercase-ref-2"><span>Ecma International / TC39</span><a class="wb-source" href="https://tc39.es/ecma262/multipage/text-processing.html#sec-string.prototype.touppercase" target="_blank" rel="noopener noreferrer">ECMAScript Language Specification: String.prototype.toUpperCase ↗</a></li></ol>
+</div>
+        </div>
+      </section>
+    </main>
+    <!-- Footer signature sa ilalim ng page. -->
+    <footer>AVER♡</footer>
+    </div><!-- Dulo ng UI frame. -->
+  </body>
+</html>

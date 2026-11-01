@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!-- Page setup: title, mobile view, CSS at JavaScript files. -->
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Sorting | VERDHENZ</title>
+    <meta name="description" content="My programming portfolio and interactive tools.">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%23ed4aaa'/%3E%3Ctext x='6' y='24' font-size='25' fill='white'%3E♡%3C/text%3E%3C/svg%3E">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="{{ url_for('static', filename='app.js') }}" defer>
+    </script>
+  </head>
+  <body class="workbench-page reference-page">
+<!-- Chrome frame at pink-blue title bar ng UI. -->
+    <!-- Chrome frame na bumabalot sa buong website UI. -->
+    <div class="site-window">
+      <!-- animated background behind all content. -->
+      <video class="video-background" autoplay muted loop playsinline aria-hidden="true" preload="auto">
+        <source src="{{ url_for('static', filename='assets/background.mp4') }}" type="video/mp4">
+      </video>
+      <!-- Y2K title bar; decorative lang ang window controls. -->
+      <div class="window-titlebar">
+        <span>verdhenz.online</span>
+        <span class="window-controls" aria-hidden="true">
+          <span>−</span><span>□</span><span>×</span>
+        </span>
+      </div>
+    <!-- Website brand at main navigation. -->
+    <header>
+      <!-- Website name na tugma sa theme. -->
+      <a class="brand" href="{{ url_for('index') }}">VERDHENZ <span aria-hidden="true">✧</span></a>
+      <!-- Mga link papuntang Home, Profile, Works at Contact. -->
+      <nav aria-label="Main navigation">
+        <a class="" href="{{ url_for('index') }}">Home</a>
+        <a class="" href="{{ url_for('profile') }}">Profile</a>
+        <a class="active" href="{{ url_for('works') }}">Works</a>
+        <a class="" href="{{ url_for('contact') }}">Contact</a>
+      </nav>
+    </header>
+    <!-- Main content ng page na ito. -->
+    <main>
+      <div class="wb-heading">
+        <a class="back" href="{{ url_for('works') }}">‹ Back to Works</a>
+        <span class="wb-kicker">Code &amp; create ✦</span>
+      </div>
+<section class="wb-shell" id="sorting-workbench" data-endpoint="{{ url_for('sorting_api') }}">
+  <div class="wb-title-row">
+    <div><span class="wb-kicker">03 / A LITTLE ORDER</span><h1 class="page-title">Sorting</h1></div>
+    <div class="wb-tabs" role="tablist" aria-label="Sorting sections" data-page-tabs>
+      <button class="outline" id="demo-tab" type="button" role="tab" aria-selected="true" aria-controls="sorting-demo" data-panel="sorting-demo">Try sorting</button>
+      <button class="outline" id="info-tab" type="button" role="tab" aria-selected="false" aria-controls="sorting-info" tabindex="-1" data-panel="sorting-info">Basic info &amp; references</button>
+    </div>
+  </div>
+  <div id="sorting-demo" role="tabpanel" aria-labelledby="demo-tab">
+    <p class="wb-lead">Pick an algorithm, enter your numbers, and follow how they find their place.</p>
+    <div class="wb-layout wb-sorting-layout">
+      <div class="card wb-demo">
+        <form id="sorting-form" novalidate>
+          <div class="wb-sort-fields">
+          <div class="wb-select-row">
+            <div><label for="algorithm">Algorithm</label><select id="algorithm" name="algorithm">{% for key, info in algorithms.items() %}<option value="{{ key }}">{{ info.name }}</option>{% endfor %}</select></div>
+            <div><label for="sort-order">Order</label><select id="sort-order" name="order"><option value="asc">Ascending ↑</option><option value="desc">Descending ↓</option></select></div>
+          </div>
+          <div class="wb-number-input">
+          <label for="sort-values">Numbers to sort</label>
+          <input id="sort-values" name="numbers" placeholder="e.g. 8, 3, 5, 1, 4" maxlength="600" autocomplete="off" aria-describedby="sort-help">
+          </div>
+          </div>
+          <p id="sort-help" class="wb-help">Use commas or spaces · up to 20 numbers · negatives and decimals welcome</p>
+          <div class="wb-actions">
+            <button id="sort-submit" type="submit">Sort numbers <span aria-hidden="true">↗</span></button>
+            <button class="outline" id="sort-example" type="button">Use example</button>
+            <button class="outline" id="sort-reset" type="button">Clear</button>
+          </div>
+        </form>
+        <p id="sort-status" class="wb-status" role="status" aria-live="polite">Enter numbers to see the result and its steps.</p>
+        <div class="wb-result"><span>Sorted result</span><output id="sorted-result">—</output></div>
+        <!-- Playback state ay laging galing sa tunay na Python algorithm trace. -->
+        <div class="wb-visual-header"><span class="wb-trace-meta"><span id="step-count">Step 0 / 0</span><span>Comparisons: <b id="comparison-count">0</b></span><span>Writes: <b id="write-count">0</b></span></span><span class="wb-legend"><i></i> Active <i class="pivot"></i> Pivot <i class="done"></i> Done</span></div>
+        <div id="sort-bars" class="wb-bars" role="group" aria-label="Numbers at the current sorting step"><p class="wb-empty">Your numbers will appear here.</p></div>
+        <p class="wb-help wb-magnitude-note">Bars show magnitude; labels keep signs. A swap counts as two array writes.</p>
+        <p id="step-message" class="wb-step-message" aria-live="polite">Use Next step or Play after sorting.</p>
+        <div class="wb-playback" aria-label="Sorting playback">
+          <button class="outline" id="sort-previous" type="button" disabled>‹ Previous</button>
+          <button id="sort-play" type="button" disabled>Play</button>
+          <button class="outline" id="sort-next" type="button" disabled>Next step ›</button>
+          <button class="outline" id="sort-finish" type="button" disabled>Show result</button>
+          <label class="wb-speed" for="sort-speed">Speed<select id="sort-speed"><option value="900">Slow</option><option value="450" selected>Normal</option><option value="150">Fast</option></select></label>
+        </div>
+      </div>
+      <aside class="card wb-notes" aria-label="Selected algorithm information">
+        <span class="wb-kicker">KNOW YOUR ALGORITHM</span>
+        <h2 id="algorithm-name">{{ algorithms.bubble.name }}</h2>
+        <p id="algorithm-description">{{ algorithms.bubble.description }}</p>
+        <dl class="wb-complexity">
+          <div><dt>Best time</dt><dd id="algorithm-best">{{ algorithms.bubble.best }}</dd></div>
+          <div><dt>Average time</dt><dd id="algorithm-average">{{ algorithms.bubble.average }}</dd></div>
+          <div><dt>Worst time</dt><dd id="algorithm-worst">{{ algorithms.bubble.worst }}</dd></div>
+          <div><dt>Extra space</dt><dd id="algorithm-space">{{ algorithms.bubble.space }}</dd></div>
+          <div><dt>Stable?</dt><dd id="algorithm-stable">{{ algorithms.bubble.stable }}</dd></div>
+        </dl>
+        <p class="wb-help" id="algorithm-note">{{ algorithms.bubble.note }}</p>
+        <p class="wb-help">Source: <a id="algorithm-reference" class="wb-source" href="{{ references[2].url }}" target="_blank" rel="noopener noreferrer">Princeton University ↗</a></p>
+      </aside>
+    </div>
+  </div>
+  <div id="sorting-info" role="tabpanel" aria-labelledby="info-tab" hidden>
+    <div class="card wb-info">
+      <div class="wb-info-intro"><h2>What is sorting?</h2><p>Sorting rearranges values into an order, such as smallest to largest or largest to smallest. It helps organize records and prepares data for tasks such as searching. <a class="wb-source" href="#ref-overview">[1]</a></p></div>
+      <div class="wb-info-grid">
+        {% for key, info in algorithms.items() %}
+        <article class="wb-algorithm-card">
+          <span class="wb-kicker">0{{ loop.index }}</span><h3>{{ info.name }}</h3>
+          <p>{{ info.description }}</p>
+          <ol>{% for step in info.steps %}<li>{{ step }}</li>{% endfor %}</ol>
+          <p><strong>Useful for:</strong> {{ info.use }}</p>
+          <a class="wb-source" href="#ref-{{ info.source }}">Read the reference ↓</a>
+        </article>
+        {% endfor %}
+      </div>
+      <h2 class="wb-section-heading">At a glance</h2>
+      <div class="wb-table-scroll" tabindex="0" role="region" aria-label="Sorting algorithm comparison">
+        <table class="wb-table">
+          <caption>Time, auxiliary space, and stability of the standard versions demonstrated here.</caption>
+          <thead><tr><th scope="col">Algorithm</th><th scope="col">Best</th><th scope="col">Average</th><th scope="col">Worst</th><th scope="col">Extra space</th><th scope="col">Stable?</th></tr></thead>
+          <tbody>{% for key, info in algorithms.items() %}<tr><th scope="row">{{ info.name }}</th><td>{{ info.best }}</td><td>{{ info.average }}</td><td>{{ info.worst }}</td><td>{{ info.space }}</td><td>{{ info.stable }}</td></tr>{% endfor %}</tbody>
+        </table>
+      </div>
+      <p class="wb-help"><strong>n</strong> is the number of items. <strong>O(1)</strong> means constant extra space; <strong>O(n)</strong>, <strong>O(n log n)</strong>, and <strong>O(n²)</strong> describe how cost grows. <strong>Stable</strong> means equal keys keep their original relative order. Bubble Sort assumes early stopping; Quick Sort's average time assumes randomly ordered input. This demo uses last-item pivots. References: <a class="wb-source" href="#ref-summary">[3]</a>, <a class="wb-source" href="#ref-quick">[5]</a>.</p>
+      <p class="wb-help">These complexity bounds describe the sorting algorithms. The visualizer also saves array snapshots for playback, which requires additional memory.</p>
+      <h2 class="wb-section-heading">References</h2>
+      <ol class="wb-references">
+        {% for reference in references %}<li id="ref-{{ reference.id }}">{{ reference.author }}. <a class="wb-source" href="{{ reference.url }}" target="_blank" rel="noopener noreferrer">{{ reference.title }} ↗</a><span>{{ reference.publisher }}</span></li>{% endfor %}
+      </ol>
+    </div>
+  </div>
+</section>
+<script id="sorting-metadata" type="application/json">{{ {"algorithms": algorithms, "references": references}|tojson }}</script>
+
+    </main>
+    <!-- Footer signature sa ilalim ng page. -->
+    <footer>AVER♡</footer>
+    </div><!-- Dulo ng UI frame. -->
+  </body>
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!-- Page setup: title, mobile view, CSS at JavaScript files. -->
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Deque | VERDHENZ</title>
+    <meta name="description" content="My programming portfolio and interactive tools.">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%23ed4aaa'/%3E%3Ctext x='6' y='24' font-size='25' fill='white'%3E♡%3C/text%3E%3C/svg%3E">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="{{ url_for('static', filename='app.js') }}" defer>
+    </script>
+  </head>
+  <body class="workbench-page reference-page">
+<!-- Chrome frame at pink-blue title bar ng UI. -->
+    <!-- Chrome frame na bumabalot sa buong website UI. -->
+    <div class="site-window">
+      <!-- animated background behind all content. -->
+      <video class="video-background" autoplay muted loop playsinline aria-hidden="true" preload="auto">
+        <source src="{{ url_for('static', filename='assets/background.mp4') }}" type="video/mp4">
+      </video>
+      <!-- Y2K title bar; decorative lang ang window controls. -->
+      <div class="window-titlebar">
+        <span>verdhenz.online</span>
+        <span class="window-controls" aria-hidden="true">
+          <span>−</span><span>□</span><span>×</span>
+        </span>
+      </div>
+    <!-- Website brand at main navigation. -->
+    <header>
+      <!-- Website name na tugma sa theme. -->
+      <a class="brand" href="{{ url_for('index') }}">VERDHENZ <span aria-hidden="true">✧</span></a>
+      <!-- Mga link papuntang Home, Profile, Works at Contact. -->
+      <nav aria-label="Main navigation">
+        <a class="" href="{{ url_for('index') }}">Home</a>
+        <a class="" href="{{ url_for('profile') }}">Profile</a>
+        <a class="active" href="{{ url_for('works') }}">Works</a>
+        <a class="" href="{{ url_for('contact') }}">Contact</a>
+      </nav>
+    </header>
+    <!-- Main content ng page na ito. -->
+    <main>
+      <div class="wb-heading">
+        <a class="back" href="{{ url_for('works') }}">‹ Back to Works</a>
+        <span class="wb-kicker">Code &amp; create ✦</span>
+      </div>
+      <section class="wb-shell" data-structure="deque" data-endpoint="{{ url_for('structures_api', kind='deque') }}">
+        <div class="wb-title-row">
+          <div><span class="wb-kicker">02 / DOUBLE-ENDED QUEUE</span><h1 class="page-title">Deque</h1></div>
+          <div class="study-title-tools"><span class="wb-badge">BOTH ENDS</span><div class="wb-tabs study-tabs" role="tablist" aria-label="Deque sections" data-page-tabs>
+  <button class="outline" type="button" id="deque-demo-tab" role="tab" aria-selected="true" aria-controls="deque-demo" data-panel="deque-demo">Try it out</button>
+  <button class="outline" type="button" id="deque-info-tab" role="tab" aria-selected="false" aria-controls="deque-info" tabindex="-1" data-panel="deque-info">Basic info &amp; references</button>
+</div></div>
+        </div>
+        <p class="wb-lead">Pronounced “deck.” Add or remove items at the front and the rear.</p>
+<!-- Controls at visual display ng Deque. -->
+
+<div id="deque-demo" role="tabpanel" aria-labelledby="deque-demo-tab">
+<div class="wb-layout">
+  <div class="card wb-demo">
+    <div class="wb-panel-title"><h2>Try it out</h2><span class="wb-counter"><span id="item-count">0</span> / {{ max_items }} items</span></div>
+    <form id="structure-form" novalidate>
+      <label for="item-value">Item value</label>
+      <div class="wb-input-row">
+        <input id="item-value" name="value" maxlength="{{ max_length }}" placeholder="e.g. Student 01" autocomplete="off" aria-describedby="item-help">
+        <button type="submit">Add rear <span aria-hidden="true">→</span></button>
+      </div>
+      <p class="wb-help" id="item-help">Text or numbers · {{ max_length }} characters per item · duplicates allowed</p>
+      <div class="wb-actions">
+        
+        <button class="outline" type="button" data-operation="add_front">Add front</button>
+        <button class="outline" type="button" data-operation="remove_front">Remove front</button>
+        <button class="outline" type="button" data-operation="remove_rear">Remove rear</button>
+        <button class="outline" type="button" data-operation="peek_front">Peek front</button>
+        <button class="outline" type="button" data-operation="peek_rear">Peek rear</button>
+        
+        <button class="outline wb-clear" type="button" data-operation="clear">Clear</button>
+      </div>
+    </form>
+    <!-- Front sa kaliwa at rear sa kanan; may labels din ang bawat end node. -->
+    <div class="wb-track">
+      <div class="wb-track-labels"><span>FRONT <span aria-hidden="true">↓</span></span><span><span aria-hidden="true">↓</span> REAR</span></div>
+      <ol id="structure-items" class="wb-items" aria-label="Deque items from front to rear"></ol>
+      <p id="empty-state" class="wb-empty">Your deque is empty.<br><span>Add an item to get started.</span></p>
+    </div>
+    <dl class="wb-stats">
+      <div><dt>Front</dt><dd id="front-value">—</dd></div>
+      <div><dt>Rear</dt><dd id="rear-value">—</dd></div>
+      <div><dt>Is empty?</dt><dd id="is-empty">Yes</dd></div>
+    </dl>
+    <p id="structure-status" class="wb-status" role="status" aria-live="polite">Choose an operation to begin.</p>
+  </div>
+  <aside class="card wb-notes">
+    <span class="wb-kicker">QUICK NOTES</span>
+    <h2>One list. Two ends.</h2>
+    
+    <p><strong>Add front / rear</strong> inserts an item at the chosen end.</p>
+    <p><strong>Remove front / rear</strong> removes from the chosen end.</p>
+    <p><strong>Peek front / rear</strong> reads an end without removing it.</p>
+    <p class="wb-example">Add rear B → add front A → add rear C → A, B, C.</p>
+    <p class="wb-help">A deque can act as a queue or a stack.</p>
+    
+    <p class="wb-help">End operations take O(1) time with linked nodes. The {{ max_items }}-item limit is for this visual demo.</p>
+  </aside>
+</div>
+</div>
+<div id="deque-info" role="tabpanel" aria-labelledby="deque-info-tab" hidden>
+<!-- Basic information, examples at clickable references para sa topic na ito. -->
+<div class="card study-info">
+  <span class="wb-kicker">A QUICK GUIDE</span>
+  <h2>Basic information</h2>
+  <p class="study-intro">A deque is a double-ended queue, pronounced “deck.” Items can enter and leave at either endpoint. <a class="study-cite" href="#deque-ref-1">[1]</a></p>
+  <div class="study-grid"><article class="study-topic"><h3>Operations</h3><ul><li><strong>Add front / rear:</strong> insert at the chosen endpoint.</li><li><strong>Remove front / rear:</strong> remove and return an endpoint item.</li><li><strong>Peek front / rear:</strong> read an endpoint without removing it.</li><li><strong>Clear:</strong> empty the deque.</li></ul></article><article class="study-topic"><h3>Example</h3><div class="study-example"><span>Add rear B → add front A → add rear C</span><code>Front → A, B, C ← Rear</code><span>Remove rear returns C</span><code>Front → A, B ← Rear</code></div><p>For FIFO behavior, add at the rear and remove at the front. For stack behavior, add and remove at the same end.</p></article><article class="study-topic"><h3>Implementation and cost</h3><p>This demo uses custom doubly linked nodes. Each node has previous and next links, supporting <strong>O(1)</strong> endpoint changes.</p><p>Python also provides a built-in <code>collections.deque</code> for efficient operations at both ends. <a class="study-cite" href="#deque-ref-2">[2]</a> The complete UI request additionally rebuilds and draws the list.</p></article><article class="study-topic"><h3>Input and empty states</h3><p>The visual demo allows 12 items, with up to 32 characters each. Duplicate values are allowed.</p><p>Removing or peeking from an empty deque displays an error. Clear empties it, and reloading starts a fresh demo.</p></article></div>
+  <h2 class="study-reference-heading">References</h2>
+  <ol class="study-references"><li id="deque-ref-1"><span>NIST</span><a class="wb-source" href="https://xlinux.nist.gov/dads/HTML/deque.html" target="_blank" rel="noopener noreferrer">Dictionary of Algorithms and Data Structures: deque ↗</a></li><li id="deque-ref-2"><span>Python Software Foundation</span><a class="wb-source" href="https://docs.python.org/3/library/collections.html#collections.deque" target="_blank" rel="noopener noreferrer">collections.deque: operations at both ends ↗</a></li></ol>
+</div>
+</div>
+      </section>
+
+    </main>
+    <!-- Footer signature sa ilalim ng page. -->
+    <footer>AVER♡</footer>
+    </div><!-- Dulo ng UI frame. -->
+  </body>
+</html>

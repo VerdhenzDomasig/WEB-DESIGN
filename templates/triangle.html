@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!-- Page setup: title, mobile view, CSS at JavaScript files. -->
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Area of Triangle | VERDHENZ </title>
+    <meta name="description" content="My programming portfolio and interactive tools.">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%23ed4aaa'/%3E%3Ctext x='6' y='24' font-size='25' fill='white'%3E♡%3C/text%3E%3C/svg%3E">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="{{ url_for('static', filename='app.js') }}" defer>
+    </script>
+  </head>
+  <body class="reference-page">
+<!-- Chrome frame at pink-blue title bar ng UI. -->
+    <!-- Chrome frame na bumabalot sa buong website UI. -->
+    <div class="site-window">
+      <!-- animated background behind all content. -->
+      <video class="video-background" autoplay muted loop playsinline aria-hidden="true" preload="auto">
+        <source src="{{ url_for('static', filename='assets/background.mp4') }}" type="video/mp4">
+      </video>
+      <!-- Y2K title bar; decorative lang ang window controls. -->
+      <div class="window-titlebar">
+        <span>verdhenz.online</span>
+        <span class="window-controls" aria-hidden="true">
+          <span>−</span><span>□</span><span>×</span>
+        </span>
+      </div>
+    <!-- Website brand at main navigation. -->
+    <header>
+      <!-- Website name na tugma sa theme. -->
+      <a class="brand" href="{{ url_for('index') }}">VERDHENZ <span aria-hidden="true">✧</span></a>
+      <!-- Mga link papuntang Home, Profile, Works at Contact. -->
+      <nav aria-label="Main navigation">
+        <a class="" href="{{ url_for('index') }}">Home</a>
+        <a class="" href="{{ url_for('profile') }}">Profile</a>
+        <a class="active" href="{{ url_for('works') }}">Works</a>
+        <a class="" href="{{ url_for('contact') }}">Contact</a>
+      </nav>
+    </header>
+    <!-- Main content ng page na ito. -->
+    <main>
+      <section class="tool study-tool">
+        <a class="back" href="{{ url_for('works') }}">‹ Back to Works</a>
+        <div class="study-heading"><h1 class="page-title">Area of Triangle</h1><div class="wb-tabs study-tabs" role="tablist" aria-label="Triangle sections" data-page-tabs>
+  <button class="outline" type="button" id="triangle-demo-tab" role="tab" aria-selected="true" aria-controls="triangle-demo" data-panel="triangle-demo">Try it out</button>
+  <button class="outline" type="button" id="triangle-info-tab" role="tab" aria-selected="false" aria-controls="triangle-info" tabindex="-1" data-panel="triangle-info">Basic info &amp; references</button>
+</div></div>
+        <div id="triangle-demo" role="tabpanel" aria-labelledby="triangle-demo-tab">
+          <div class="card">          <div class="symbol">△</div>
+          <!-- Main heading ng page. -->
+          <!-- Input form; app.js ang humahawak sa submission. -->
+          <form id="triangle" novalidate>
+            <!-- Description o message na binabasa ng visitor. -->
+            <p class="muted">Area = ½ × base × height</p>
+            <!-- Pangalan ng field; for attribute ang koneksyon sa input. -->
+            <label for="base">Base</label>
+            <!-- User input; id ang ginagamit ng app.js para basahin ang value. -->
+            <input id="base" type="number" min="0" step="any" required placeholder="e.g. 10">
+            <!-- Pangalan ng field; for attribute ang koneksyon sa input. -->
+            <label for="height">Height</label>
+            <!-- User input; id ang ginagamit ng app.js para basahin ang value. -->
+            <input id="height" type="number" min="0" step="any" required placeholder="e.g. 5">
+            <!-- Grupo ng buttons o navigation links. -->
+            <div class="actions">
+              <!-- Action button; type o data-action ang nagtatakda ng gagawin. -->
+              <button>Calculate Area</button>
+            </div>
+          </form>
+          <div class="result" aria-live="polite" aria-atomic="true">
+            <span>Result</span>
+            <!-- Dito inilalagay ng app.js ang sagot o error message. -->
+            <strong id="output">Your result will appear here.</strong>
+          </div>
+
+          </div>
+        </div>
+        <div id="triangle-info" role="tabpanel" aria-labelledby="triangle-info-tab" hidden>
+          <!-- Basic information, examples at clickable references para sa topic na ito. -->
+<div class="card study-info">
+  <span class="wb-kicker">A QUICK GUIDE</span>
+  <h2>Basic information</h2>
+  <p class="study-intro">The area of a triangle measures the surface inside its boundary. It depends on a chosen base and the perpendicular height. <a class="study-cite" href="#triangle-ref-1">[1]</a></p>
+  <div class="study-grid"><article class="study-topic"><h3>Formula and terms</h3><math display="block" aria-label="A equals base times height divided by two"><mrow><mi>A</mi><mo>=</mo><mfrac><mrow><mi>b</mi><mo>×</mo><mi>h</mi></mrow><mn>2</mn></mfrac></mrow></math><ul><li><strong>b:</strong> the chosen base length.</li><li><strong>h:</strong> height measured at 90° to that base.</li><li><strong>A:</strong> area in square units.</li></ul></article><article class="study-topic"><h3>Worked example</h3><p>Given: <strong>b = 10 cm</strong>, <strong>h = 4 cm</strong>.</p><math display="block" aria-label="Area equals ten times four divided by two, equal to twenty square centimeters"><mrow><mi>A</mi><mo>=</mo><mfrac><mrow><mn>10</mn><mo>×</mo><mn>4</mn></mrow><mn>2</mn></mfrac><mo>=</mo><mn>20</mn><mtext> cm²</mtext></mrow></math></article><article class="study-topic"><h3>How to use the calculator</h3><ol><li>Use the same unit for base and height.</li><li>Enter both measurements.</li><li>Click Calculate Area.</li></ol><p>If measurements are in centimeters, the result is in square centimeters.</p> <a class="study-cite" href="#triangle-ref-2">[2]</a></article><article class="study-topic"><h3>Applications and input rules</h3><p>Useful for estimating triangular floor spaces, panels, and designs.</p><p>This calculator accepts finite, non-negative lengths and decimals. A zero base or height returns zero area.</p></article></div>
+  <h2 class="study-reference-heading">References</h2>
+  <ol class="study-references"><li id="triangle-ref-1"><span>NIST</span><a class="wb-source" href="https://www.nist.gov/pml/owm/circumference-area-and-volume" target="_blank" rel="noopener noreferrer">Circumference, Area and Volume ↗</a></li><li id="triangle-ref-2"><span>OpenStax</span><a class="wb-source" href="https://openstax.org/books/contemporary-mathematics/pages/10-6-area" target="_blank" rel="noopener noreferrer">Contemporary Mathematics, 10.6: Area ↗</a></li></ol>
+</div>
+        </div>
+      </section>
+    </main>
+    <!-- Footer signature sa ilalim ng page. -->
+    <footer>AVER♡</footer>
+    </div><!-- Dulo ng UI frame. -->
+  </body>
+</html>

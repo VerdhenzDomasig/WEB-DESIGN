@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!-- Page setup: title, mobile view, CSS at JavaScript files. -->
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Works | VERDHENZ</title>
+    <meta name="description" content="My programming portfolio and interactive tools.">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%23ed4aaa'/%3E%3Ctext x='6' y='24' font-size='25' fill='white'%3E♡%3C/text%3E%3C/svg%3E">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="{{ url_for('static', filename='app.js') }}" defer>
+    </script>
+  </head>
+  <body class="works-page reference-page">
+<!-- Chrome frame at pink-blue title bar ng UI. -->
+    <!-- Chrome frame na bumabalot sa buong website UI. -->
+    <div class="site-window">
+      <!-- animated background behind all content. -->
+      <video class="video-background" autoplay muted loop playsinline aria-hidden="true" preload="auto">
+        <source src="{{ url_for('static', filename='assets/background.mp4') }}" type="video/mp4">
+      </video>
+      <!-- Y2K title bar; decorative lang ang window controls. -->
+      <div class="window-titlebar">
+        <span>verdhenz.online</span>
+        <span class="window-controls" aria-hidden="true">
+          <span>−</span><span>□</span><span>×</span>
+        </span>
+      </div>
+    <!-- Website brand at main navigation. -->
+    <header>
+      <!-- Website name na tugma sa theme. -->
+      <a class="brand" href="{{ url_for('index') }}">VERDHENZ <span aria-hidden="true">✧</span></a>
+      <!-- Mga link papuntang Home, Profile, Works at Contact. -->
+      <nav aria-label="Main navigation">
+        <a class="" href="{{ url_for('index') }}">Home</a>
+        <a class="" href="{{ url_for('profile') }}">Profile</a>
+        <a class="active" href="{{ url_for('works') }}">Works</a>
+        <a class="" href="{{ url_for('contact') }}">Contact</a>
+      </nav>
+    </header>
+    <!-- Main content ng page na ito. -->
+    <main>
+<div class="study-heading"><div><div class="eyebrow">Code &amp; create ✦</div><h1 class="page-title">My Programming Works</h1></div><div class="wb-tabs study-tabs" role="tablist" aria-label="Works sections" data-page-tabs>
+  <button class="outline" type="button" id="works-demo-tab" role="tab" aria-selected="true" aria-controls="works-demo" data-panel="works-demo">View works</button>
+  <button class="outline" type="button" id="works-info-tab" role="tab" aria-selected="false" aria-controls="works-info" tabindex="-1" data-panel="works-info">Basic info &amp; references</button>
+</div></div>
+<div id="works-demo" role="tabpanel" aria-labelledby="works-demo-tab">
+      <div class="grid works-grid">
+        <!-- Section na ito: card. -->
+        <section class="card">
+          <div class="symbol">Aa</div>
+          <!-- Pamagat ng card o personal information. -->
+          <h2>To Uppercase</h2>
+          <!-- Description o message na binabasa ng visitor. -->
+          <p>Turn your text into uppercase letters.</p>
+          <a class="button" href="{{ url_for('uppercase') }}">Open To Uppercase</a>
+        </section>
+        <!-- Section na ito: card. -->
+        <section class="card">
+          <div class="symbol">△</div>
+          <!-- Pamagat ng card o personal information. -->
+          <h2>Area of Triangle</h2>
+          <!-- Description o message na binabasa ng visitor. -->
+          <p>Calculate using the base and height.</p>
+          <a class="button" href="{{ url_for('triangle') }}">Open Area of Triangle</a>
+        </section>
+        <!-- Section na ito: card. -->
+        <section class="card">
+          <div class="symbol">○</div>
+          <!-- Pamagat ng card o personal information. -->
+          <h2>Area of Circle</h2>
+          <!-- Description o message na binabasa ng visitor. -->
+          <p>Calculate using the radius.</p>
+          <a class="button" href="{{ url_for('circle') }}">Open Area of Circle</a>
+        </section>
+        <!-- Section na ito: card. -->
+        <section class="card">
+          <div class="symbol">⛓</div>
+          <!-- Pamagat ng card o personal information. -->
+          <h2>Linked List</h2>
+          <!-- Description o message na binabasa ng visitor. -->
+          <p>Insert, delete, and explore connected nodes.</p>
+          <a class="button" href="{{ url_for('linked_list') }}">Open Linked List</a>
+        </section>
+        <!-- Infix at postfix converter na kapareho ng Works cards. -->
+        <section class="card">
+          <div class="symbol">⇄</div>
+          <h2>INFIX &amp; POSTFIX</h2>
+          <p>Convert infix expressions to postfix, step by step.</p>
+          <a class="button" href="{{ url_for('infix_postfix') }}">Open Infix &amp; Postfix</a>
+        </section>
+        <!-- FIFO queue: sa rear ang dagdag, sa front ang alisin. -->
+        <section class="card">
+          <div class="symbol" aria-hidden="true">→</div>
+          <h2>Queue</h2>
+          <p>Enqueue, dequeue, and explore first-in, first-out.</p>
+          <a class="button" href="{{ url_for('queue') }}">Open Queue</a>
+        </section>
+        <!-- Deque: parehong dulo ang puwedeng dagdagan at bawasan. -->
+        <section class="card">
+          <div class="symbol" aria-hidden="true">↔</div>
+          <h2>Deque</h2>
+          <p>Add, remove, and peek at either end of the list.</p>
+          <a class="button" href="{{ url_for('deque') }}">Open Deque</a>
+        </section>
+        <!-- Sorting demo kasama ang basic info at references. -->
+        <section class="card">
+          <div class="symbol" aria-hidden="true">↗</div>
+          <h2>Sorting</h2>
+          <p>Try five sorting algorithms and follow each step.</p>
+          <a class="button" href="{{ url_for('sorting') }}">Open Sorting</a>
+        </section>
+      </div>
+
+</div>
+<div id="works-info" role="tabpanel" aria-labelledby="works-info-tab" hidden>
+<!-- Basic information, examples at clickable references para sa topic na ito. -->
+<div class="card study-info">
+  <span class="wb-kicker">A QUICK GUIDE</span>
+  <h2>Basic information</h2>
+  <p class="study-intro">These eight programming works let you try text conversion, geometry calculations, data structures, and sorting. Open a tool to use its controls or read its topic guide.</p>
+  <div class="study-grid"><article class="study-topic"><h3>Text and geometry</h3><ul><li><strong>To Uppercase:</strong> convert text to capital letters.</li><li><strong>Area of Triangle:</strong> calculate using base and perpendicular height.</li><li><strong>Area of Circle:</strong> calculate using the radius.</li></ul></article><article class="study-topic"><h3>Data structures and notation</h3><ul><li><strong>Linked List:</strong> insert, delete, and search connected nodes.</li><li><strong>Queue:</strong> explore FIFO operations.</li><li><strong>Deque:</strong> operate at both endpoints.</li><li><strong>Infix &amp; Postfix:</strong> convert expressions using an operator stack.</li></ul></article><article class="study-topic"><h3>Sorting</h3><p>Compare Bubble, Selection, Insertion, Merge, and Quick Sort. Choose ascending or descending order, view the result, and play through the recorded steps.</p><p>Each algorithm has its own explanation and complexity summary on the Sorting page.</p></article><article class="study-topic"><h3>How to explore</h3><ol><li>Choose Open on a Works card.</li><li>Use the tool with your own input.</li><li>Select Basic info &amp; references for definitions, examples, and sources.</li><li>Return here using Back to Works.</li></ol></article></div>
+  <h2 class="study-reference-heading">References</h2>
+  <ol class="study-references"><li id="works-ref-1"><span>MDN Web Docs</span><a class="wb-source" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/toUpperCase" target="_blank" rel="noopener noreferrer">String.prototype.toUpperCase() ↗</a></li><li id="works-ref-2"><span>NIST</span><a class="wb-source" href="https://www.nist.gov/pml/owm/circumference-area-and-volume" target="_blank" rel="noopener noreferrer">Circumference, Area and Volume ↗</a></li><li id="works-ref-3"><span>NIST</span><a class="wb-source" href="https://xlinux.nist.gov/dads/HTML/linkedList.html" target="_blank" rel="noopener noreferrer">Dictionary of Algorithms and Data Structures: linked list ↗</a></li><li id="works-ref-4"><span>NIST</span><a class="wb-source" href="https://xlinux.nist.gov/dads/HTML/queue.html" target="_blank" rel="noopener noreferrer">Dictionary of Algorithms and Data Structures: queue ↗</a></li><li id="works-ref-5"><span>NIST</span><a class="wb-source" href="https://xlinux.nist.gov/dads/HTML/deque.html" target="_blank" rel="noopener noreferrer">Dictionary of Algorithms and Data Structures: deque ↗</a></li><li id="works-ref-6"><span>Runestone Academy</span><a class="wb-source" href="https://runestone.academy/ns/books/published/pythonds3/BasicDS/InfixPrefixandPostfixExpressions.html" target="_blank" rel="noopener noreferrer">Infix, Prefix, and Postfix Expressions ↗</a></li><li id="works-ref-7"><span>Robert Sedgewick &amp; Kevin Wayne · Princeton University</span><a class="wb-source" href="https://algs4.cs.princeton.edu/20sorting/" target="_blank" rel="noopener noreferrer">Sorting ↗</a></li></ol>
+</div>
+</div>
+    </main>
+    <!-- Footer signature sa ilalim ng page. -->
+    <footer>AVER♡</footer>
+    </div><!-- Dulo ng UI frame. -->
+  </body>
+</html>

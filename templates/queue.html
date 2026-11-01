@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!-- Page setup: title, mobile view, CSS at JavaScript files. -->
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Queue | VERDHENZ</title>
+    <meta name="description" content="My programming portfolio and interactive tools.">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%23ed4aaa'/%3E%3Ctext x='6' y='24' font-size='25' fill='white'%3E♡%3C/text%3E%3C/svg%3E">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="{{ url_for('static', filename='app.js') }}" defer>
+    </script>
+  </head>
+  <body class="workbench-page reference-page">
+<!-- Chrome frame at pink-blue title bar ng UI. -->
+    <!-- Chrome frame na bumabalot sa buong website UI. -->
+    <div class="site-window">
+      <!-- animated background behind all content. -->
+      <video class="video-background" autoplay muted loop playsinline aria-hidden="true" preload="auto">
+        <source src="{{ url_for('static', filename='assets/background.mp4') }}" type="video/mp4">
+      </video>
+      <!-- Y2K title bar; decorative lang ang window controls. -->
+      <div class="window-titlebar">
+        <span>verdhenz.online</span>
+        <span class="window-controls" aria-hidden="true">
+          <span>−</span><span>□</span><span>×</span>
+        </span>
+      </div>
+    <!-- Website brand at main navigation. -->
+    <header>
+      <!-- Website name na tugma sa theme. -->
+      <a class="brand" href="{{ url_for('index') }}">VERDHENZ <span aria-hidden="true">✧</span></a>
+      <!-- Mga link papuntang Home, Profile, Works at Contact. -->
+      <nav aria-label="Main navigation">
+        <a class="" href="{{ url_for('index') }}">Home</a>
+        <a class="" href="{{ url_for('profile') }}">Profile</a>
+        <a class="active" href="{{ url_for('works') }}">Works</a>
+        <a class="" href="{{ url_for('contact') }}">Contact</a>
+      </nav>
+    </header>
+    <!-- Main content ng page na ito. -->
+    <main>
+      <div class="wb-heading">
+        <a class="back" href="{{ url_for('works') }}">‹ Back to Works</a>
+        <span class="wb-kicker">Code &amp; create ✦</span>
+      </div>
+      <section class="wb-shell" data-structure="queue" data-endpoint="{{ url_for('structures_api', kind='queue') }}">
+        <div class="wb-title-row">
+          <div><span class="wb-kicker">01 / FIRST IN, FIRST OUT</span><h1 class="page-title">Queue</h1></div>
+          <div class="study-title-tools"><span class="wb-badge">FIFO</span><div class="wb-tabs study-tabs" role="tablist" aria-label="Queue sections" data-page-tabs>
+  <button class="outline" type="button" id="queue-demo-tab" role="tab" aria-selected="true" aria-controls="queue-demo" data-panel="queue-demo">Try it out</button>
+  <button class="outline" type="button" id="queue-info-tab" role="tab" aria-selected="false" aria-controls="queue-info" tabindex="-1" data-panel="queue-info">Basic info &amp; references</button>
+</div></div>
+        </div>
+        <p class="wb-lead">Just like a waiting line: the first item added is the first one removed.</p>
+<!-- Controls at visual display ng Queue. -->
+
+<div id="queue-demo" role="tabpanel" aria-labelledby="queue-demo-tab">
+<div class="wb-layout">
+  <div class="card wb-demo">
+    <div class="wb-panel-title"><h2>Try it out</h2><span class="wb-counter"><span id="item-count">0</span> / {{ max_items }} items</span></div>
+    <form id="structure-form" novalidate>
+      <label for="item-value">Item value</label>
+      <div class="wb-input-row">
+        <input id="item-value" name="value" maxlength="{{ max_length }}" placeholder="e.g. Student 01" autocomplete="off" aria-describedby="item-help">
+        <button type="submit">Enqueue <span aria-hidden="true">→</span></button>
+      </div>
+      <p class="wb-help" id="item-help">Text or numbers · {{ max_length }} characters per item · duplicates allowed</p>
+      <div class="wb-actions">
+        
+        <button class="outline" type="button" data-operation="dequeue">Dequeue</button>
+        <button class="outline" type="button" data-operation="peek">Peek front</button>
+        
+        <button class="outline wb-clear" type="button" data-operation="clear">Clear</button>
+      </div>
+    </form>
+    <!-- Front sa kaliwa at rear sa kanan; may labels din ang bawat end node. -->
+    <div class="wb-track">
+      <div class="wb-track-labels"><span>FRONT <span aria-hidden="true">↓</span></span><span><span aria-hidden="true">↓</span> REAR</span></div>
+      <ol id="structure-items" class="wb-items" aria-label="Queue items from front to rear"></ol>
+      <p id="empty-state" class="wb-empty">Your queue is empty.<br><span>Add an item to get started.</span></p>
+    </div>
+    <dl class="wb-stats">
+      <div><dt>Front</dt><dd id="front-value">—</dd></div>
+      <div><dt>Rear</dt><dd id="rear-value">—</dd></div>
+      <div><dt>Is empty?</dt><dd id="is-empty">Yes</dd></div>
+    </dl>
+    <p id="structure-status" class="wb-status" role="status" aria-live="polite">Choose an operation to begin.</p>
+  </div>
+  <aside class="card wb-notes">
+    <span class="wb-kicker">QUICK NOTES</span>
+    <h2>A waiting line, in code.</h2>
+    
+    <p><strong>Enqueue</strong> adds an item at the rear.</p>
+    <p><strong>Dequeue</strong> removes the item at the front.</p>
+    <p><strong>Peek</strong> reads the front without removing it.</p>
+    <p class="wb-example">Enqueue A, B, C → dequeue returns A → remaining: B, C.</p>
+    <p class="wb-help">Used in waiting lines, print jobs, and breadth-first search.</p>
+    
+    <p class="wb-help">End operations take O(1) time with linked nodes. The {{ max_items }}-item limit is for this visual demo.</p>
+  </aside>
+</div>
+</div>
+<div id="queue-info" role="tabpanel" aria-labelledby="queue-info-tab" hidden>
+<!-- Basic information, examples at clickable references para sa topic na ito. -->
+<div class="card study-info">
+  <span class="wb-kicker">A QUICK GUIDE</span>
+  <h2>Basic information</h2>
+  <p class="study-intro">A queue is a first-in, first-out (FIFO) collection: items leave in the order they arrive. <a class="study-cite" href="#queue-ref-1">[1]</a></p>
+  <div class="study-grid"><article class="study-topic"><h3>Operations and endpoints</h3><ul><li><strong>Front:</strong> the next item to leave.</li><li><strong>Rear:</strong> where a new item joins.</li><li><strong>Enqueue:</strong> add at the rear.</li><li><strong>Dequeue:</strong> remove and return the front.</li><li><strong>Peek:</strong> read the front without removing it.</li></ul></article><article class="study-topic"><h3>Example and uses</h3><div class="study-example"><span>Enqueue A, then B, then C</span><code>Front → A, B, C ← Rear</code><span>Dequeue returns A</span><code>Front → B, C ← Rear</code></div><p>Useful for waiting lines, print jobs, and breadth-first search.</p></article><article class="study-topic"><h3>How this demo works</h3><p>The Python implementation maintains links to both ends. Enqueue, dequeue, and peek use <strong>O(1)</strong> endpoint operations. <a class="study-cite" href="#queue-ref-2">[2]</a></p><p>Passing state to the server and drawing all items adds O(n) work to the complete UI request.</p></article><article class="study-topic"><h3>Input and empty states</h3><p>The visual demo allows 12 items, with up to 32 characters each. Text, numbers, and duplicates are accepted.</p><p>Removing or peeking from an empty queue displays an error. Clear empties the queue. Reloading the page starts a fresh demo.</p></article></div>
+  <h2 class="study-reference-heading">References</h2>
+  <ol class="study-references"><li id="queue-ref-1"><span>NIST</span><a class="wb-source" href="https://xlinux.nist.gov/dads/HTML/queue.html" target="_blank" rel="noopener noreferrer">Dictionary of Algorithms and Data Structures: queue ↗</a></li><li id="queue-ref-2"><span>Robert Sedgewick &amp; Kevin Wayne · Princeton University</span><a class="wb-source" href="https://algs4.cs.princeton.edu/13stacks/" target="_blank" rel="noopener noreferrer">Bags, Queues, and Stacks ↗</a></li></ol>
+</div>
+</div>
+      </section>
+
+    </main>
+    <!-- Footer signature sa ilalim ng page. -->
+    <footer>AVER♡</footer>
+    </div><!-- Dulo ng UI frame. -->
+  </body>
+</html>
